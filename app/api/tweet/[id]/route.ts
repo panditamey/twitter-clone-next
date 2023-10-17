@@ -2,7 +2,7 @@ import prisma from "@/prisma";
 import { connectToDb } from "@/utils/functions"
 import { NextResponse } from "next/server";
 
-export const GET = async (req:Request,params:{id:string})=>{
+export const GET = async (req:Request,{params}:{params:{id:string}})=>{
     try {
         await connectToDb();
         const tweet = await prisma.tweets.findFirst({where:{id:params.id}});
