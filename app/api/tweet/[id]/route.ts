@@ -5,7 +5,11 @@ import { NextResponse } from "next/server";
 export const GET = async (req:Request,{params}:{params:{id:string}})=>{
     try {
         await connectToDb();
-        const tweet = await prisma.tweets.findFirst({where:{id:params.id}});
+        const tweet = await prisma.tweets.findFirst({where:{id:params.id},include:{comments:true,_count:true}});
+        await prisma.tweets.update({
+            data:{views:tweet?.views?tweet.views+1:1},
+            where:{id:params.id}
+        })
         return NextResponse.json({tweet},{status:200});
     } catch (error:any) {
         return NextResponse.json({error:error.nessage},{status:500});

@@ -12,18 +12,34 @@ datasource db {
 }
 
 model User {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
   name     String
-  email    String   @unique
+  email    String     @unique
   password String
   tweets   Tweets[]
+  Comments Comments[]
 }
 
 model Tweets {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
   tweet     String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt()
+  User      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String     @db.ObjectId
+  likes     Int @default(0)
+  retweets  Int @default(0)
+  views     Int @default(0)
+  comments  Comments[]
+}
+
+model Comments {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  comment   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
-  User      User    @relation(fields: [userId], references: [id],onDelete: Cascade)
-  userId    String  @db.ObjectId
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String   @db.ObjectId
+  Tweets    Tweets?  @relation(fields: [tweetId], references: [id])
+  tweetId   String   @db.ObjectId
 }

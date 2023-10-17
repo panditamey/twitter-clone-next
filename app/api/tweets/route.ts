@@ -28,7 +28,9 @@ export const POST = async (req:Request)=>{
         const tweetref = await prisma.tweets.create({
             data:{
                 tweet,
-                userId
+                userId,
+                views:0,
+                likes:0,
             }
         });
         return NextResponse.json({tweetref},{status:200});
