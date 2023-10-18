@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export const GET = async (req:Request)=>{
     try {
         await connectToDb();
-        const tweets = await prisma.tweets.findMany();
+        const tweets = await prisma.tweets.findMany({include:{comments:true}});
         return NextResponse.json({tweets},{status:200});
     } catch (error:any) {
         return NextResponse.json({error:error.nessage},{status:500});
@@ -16,7 +16,8 @@ export const GET = async (req:Request)=>{
 
 export const POST = async (req:Request)=>{
     try {
-        const {tweet,userId} = await req.json();
+        const {tweet,userId,image} = await req.json();
+        var url = null;
         if(!tweet||!userId){
             return NextResponse.json({error:"Invalid Data"},{status:422});
         }
@@ -25,10 +26,14 @@ export const POST = async (req:Request)=>{
         if(!user){
             return NextResponse.json({error:"Invalid User"},{status:401});
         }
+        if(image){
+            url = "URL OF IMAGE"
+        }
         const tweetref = await prisma.tweets.create({
             data:{
                 tweet,
                 userId,
+                image:url?url:null,
                 views:0,
                 likes:0,
             }
