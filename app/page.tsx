@@ -12,9 +12,9 @@ export default function Home() {
         
 
         <div className='flex flex-row justify-between'>
-          {/* <Menu/>
+          <Menu/>
           <Hero/>
-          <Hashtags/> */}
+          <Hashtags/>
         </div>
 
 
