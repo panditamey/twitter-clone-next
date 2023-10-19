@@ -3,7 +3,7 @@ import { AiOutlineSearch } from 'react-icons/ai'
 
 function Hashtags() {
     return (
-        <div className='sticky top-0 border-gray-800	border-l h-screen w-[30%] pr-24 pl-5 py-4 flex flex-col'>
+        <div className='sticky top-0 border-gray-800 lg:w-[25%] max-lg:hidden	border-l h-screen w-[30%] pr-24 pl-5 py-4 flex flex-col'>
                 <div className='relative inset-y-8 pl-5  flex items-center pointer-events-none'>
                     <AiOutlineSearch className='w-5 h-5  text-gray-400' />
                 </div>
