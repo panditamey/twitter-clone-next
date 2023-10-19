@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export const GET = async (req:Request)=>{
     try {
         await connectToDb();
-        const tweets = await prisma.tweets.findMany({include:{comments:true,_count:true}});
+        const tweets = await prisma.tweets.findMany({include:{comments:true,User:{select:{name:true}},_count:true}});
         return NextResponse.json({tweets},{status:200});
     } catch (error:any) {
         return NextResponse.json({error:error.nessage},{status:500});

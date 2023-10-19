@@ -6,6 +6,11 @@ async function Hero() {
     const res = await fetch(process.env.SERVER_URL + '/api/tweets',{
         // cache: 'cache',
     });
+    //get username from /api/user
+
+
+
+
     const data = await res.json();
     return (
         <div className="flex flex-col w-[45%] max-lg:w-full ">
@@ -14,7 +19,7 @@ async function Hero() {
             <div >
                 {
                     data.tweets.map((tweet: any,index:number) => (
-                        <Tweet key={tweet.id} tweet={tweet}/>
+                        <Tweet key={tweet.id} tweet={tweet} User={tweet.User}/>
                     ))
                 }
             </div>
