@@ -3,7 +3,7 @@ import UserInputField from './UserInputField'
 import Tweet from './Tweet'
 
 async function Hero() {
-    const res = await fetch(process.env.URL + '/api/tweets',{
+    const res = await fetch(process.env.MYURL + '/api/tweets',{
         // cache: 'cache',
     });
     const data = await res.json();

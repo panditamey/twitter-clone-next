@@ -35,7 +35,7 @@ function UserInputField() {
             }
             )
             const data = await imgURL.json();
-            await fetch(process.env.URL +'/api/tweets', {
+            await fetch(process.env.MYURL +'/api/tweets', {
                 method: 'POST',
                 body: JSON.stringify({
                     "tweet": tweet,
@@ -86,7 +86,7 @@ function UserInputField() {
         }
         else {
 
-            await fetch(process.env.URL +'/api/tweets', {
+            await fetch(process.env.MYURL +'/api/tweets', {
                 method: 'POST',
                 body: JSON.stringify({
                     "tweet": tweet,
