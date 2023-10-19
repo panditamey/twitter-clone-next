@@ -16,13 +16,13 @@ function Tweet({ tweet,User }: TweetProps) {
             <div className='flex flex-col ml-5 w-full '>
                 <div className='flex flex-row space-x-2'>
                     <h1 className='font-bold'>{User.name}</h1>
-                    <h2 className='font-mono text-gray-500'>@{tweet.id}</h2>
+                    <h2 className='font-mono text-gray-500 lg:text-lg text-sm'>@{tweet.id}</h2>
                 </div>
                 <p className='text-justify text-sm'>
                     {tweet.tweet}
                 </p>
                 {tweet.image == null ? null :
-                    <img className='my-5 h-fit w-fit max-h-80 rounded-xl border border-white' src={tweet.image} alt="" />
+                    <img className='my-5 lg:h-fit lg:w-fit h-44 w-48  max-h-80 rounded-xl border border-white' src={tweet.image} alt="" />
                 }
                 <div className='flex flex-row justify-between p-5'>
                     <span className='flex flex-row space-x-2'><FaRegComment className='h-5 w-5 text-gray-500 hover:text-blue-600 cursor-pointer' /> <h6>{tweet.comments.length}</h6></span>
